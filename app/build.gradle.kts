@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.korobeynikova.pr8_primer_v2"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.korobeynikova.pr8_primer_v2"

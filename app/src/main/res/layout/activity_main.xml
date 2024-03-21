@@ -246,14 +246,14 @@
                 android:id="@+id/reightButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="50"
                 android:text="ВЕРНО" />
 
             <Button
                 android:id="@+id/loseButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="50"
                 android:text="НЕВЕРНО" />
         </LinearLayout>
 

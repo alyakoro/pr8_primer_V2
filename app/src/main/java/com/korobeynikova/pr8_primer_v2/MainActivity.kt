@@ -8,15 +8,16 @@ import kotlin.random.Random
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    var right: Int = 0
-    var lose: Int = 0
+    private var right = 0
+    private var lose = 0
+    private var all = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.loseButton.isEnabled = false
-        binding.loseButton.isEnabled = false
+        binding.reightButton.isEnabled = false
 
         binding.startButton.setOnClickListener {
             button()
@@ -27,7 +28,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun button() {
         binding.loseButton.isEnabled = true
-        binding.loseButton.isEnabled = true
+        binding.reightButton.isEnabled = true
         binding.startButton.isEnabled = false
     }
 
@@ -49,7 +50,10 @@ class MainActivity : AppCompatActivity() {
             '+' -> numberOne + numberTwo
             '-' -> numberOne - numberTwo
             '*' -> numberOne * numberTwo
-            '/' -> numberOne.toDouble() / numberTwo.toDouble()
+            '/' -> {
+                val result = numberOne.toDouble() / numberTwo.toDouble()
+                String.format("%.2f", result).toDouble()
+            }
             else -> throw IllegalArgumentException("Unknown operator")
         }
         if (isCorrect) {
@@ -57,8 +61,9 @@ class MainActivity : AppCompatActivity() {
         } else {
             var wrongResult: Number
             do {
+                val randomNumberString = String.format("%.2f", Random.nextDouble(0.1, 10.0)).replace(',', '.')
                 wrongResult = when (operator) {
-                    '/' -> Random.nextDouble(0.1, 10.0)
+                    '/' -> randomNumberString.toDouble()
                     else -> Random.nextInt(5, 200)
                 }
             } while (wrongResult == correctResult)
@@ -75,14 +80,29 @@ class MainActivity : AppCompatActivity() {
         binding.loseButton.setOnClickListener {
             if (result != correct)
                 right++
-            lose++
+            else
+                lose++
+            all++
             generatePrimer()
+            voodoo()
         }
         binding.reightButton.setOnClickListener {
             if (result == correct)
                 right++
-            lose++
+            else
+                lose++
+            all++
             generatePrimer()
+            voodoo()
         }
+    }
+
+    private fun voodoo(){
+        binding.itogoNull.text = all.toString()
+        binding.rightNull.text = right.toString()
+        binding.loseNull.text = lose.toString()
+
+        val present = String.format("%.2f%%", (right.toDouble() / all.toDouble()) * 100)
+        binding.prosenttext.text = present
     }
 }
