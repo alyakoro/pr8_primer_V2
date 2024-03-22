@@ -40,7 +40,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="55"
+            android:layout_weight="57"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -92,17 +92,31 @@
             </LinearLayout>
         </LinearLayout>
 
-        <TextView
+        <View
+            android:id="@+id/view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="ВРЕМЯ (сек)"
-            android:textSize="24sp" />
+            android:layout_height="1dp"
+            android:background="#673AB7"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="55"
+            android:layout_weight="60"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="ВРЕМЯ (сек)"
+                android:textSize="24sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="58"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -126,7 +140,6 @@
                     android:gravity="center"
                     android:text="0" />
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -172,22 +185,34 @@
             </LinearLayout>
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/prosenttext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="40dp"
-            android:text="0.00%"
-            android:textSize="60sp" />
+        <View
+            android:id="@+id/view2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#673AB7"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="55"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/prosenttext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0.00%"
+                android:textSize="48sp" />
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/primerlayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="50"
+            android:layout_weight="55"
             android:gravity="center"
-            android:orientation="horizontal"
-            android:padding="20dp">
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/null_null_1"
@@ -239,7 +264,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="55"
+            android:layout_weight="58"
+            android:gravity="bottom"
             android:orientation="horizontal">
 
             <Button

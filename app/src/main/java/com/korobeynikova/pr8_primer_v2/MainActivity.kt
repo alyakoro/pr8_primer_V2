@@ -2,6 +2,8 @@ package com.korobeynikova.pr8_primer_v2
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import androidx.core.view.isVisible
 import com.korobeynikova.pr8_primer_v2.databinding.ActivityMainBinding
 import kotlin.random.Random
 
@@ -12,6 +14,8 @@ class MainActivity : AppCompatActivity() {
     private var lose = 0
     private var all = 0
     private var startTime: Long = 0L
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -30,6 +34,7 @@ class MainActivity : AppCompatActivity() {
         binding.loseButton.isEnabled = true
         binding.reightButton.isEnabled = true
         binding.startButton.isEnabled = false
+        binding.startButton.visibility = View.GONE
     }
 
     private fun generatePrimer(){
