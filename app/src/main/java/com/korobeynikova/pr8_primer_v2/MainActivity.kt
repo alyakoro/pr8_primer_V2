@@ -11,6 +11,7 @@ class MainActivity : AppCompatActivity() {
     private var right = 0
     private var lose = 0
     private var all = 0
+    private var startTime: Long = 0L
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -21,7 +22,6 @@ class MainActivity : AppCompatActivity() {
 
         binding.startButton.setOnClickListener {
             button()
-
             generatePrimer()
         }
     }
@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
             '*' -> numberOne * numberTwo
             '/' -> {
                 val result = numberOne.toDouble() / numberTwo.toDouble()
-                String.format("%.2f", result).toDouble()
+                String.format("%.2f", result).replace(',', '.').toDouble()
             }
             else -> throw IllegalArgumentException("Unknown operator")
         }
@@ -75,7 +75,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun proverPrimer(result: Double, correct: Double) {
-        //time
 
         binding.loseButton.setOnClickListener {
             if (result != correct)
@@ -84,6 +83,7 @@ class MainActivity : AppCompatActivity() {
                 lose++
             all++
             generatePrimer()
+            time()
             voodoo()
         }
         binding.reightButton.setOnClickListener {
@@ -93,10 +93,29 @@ class MainActivity : AppCompatActivity() {
                 lose++
             all++
             generatePrimer()
+            time()
             voodoo()
         }
     }
 
+    private val timeIntervals = mutableListOf<Long>()
+    private fun time(){
+        val endTime = System.currentTimeMillis()
+        val elapsedTime = endTime - startTime
+        startTime = System.currentTimeMillis()
+        val seconds = elapsedTime / 1000 % 10
+
+        timeIntervals.add(seconds)
+
+        val maxTime = timeIntervals.maxOrNull() ?: 0
+        val minTime = timeIntervals.minOrNull() ?: 0
+
+        binding.maxNull.text = maxTime.toString()
+        binding.minNull.text = minTime.toString()
+
+        val averageTime = timeIntervals.average()
+        binding.credeeNull.text = String.format("%.2f", averageTime)
+    }
     private fun voodoo(){
         binding.itogoNull.text = all.toString()
         binding.rightNull.text = right.toString()
